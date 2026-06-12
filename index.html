@@ -4,65 +4,146 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>侯昌昌HCC | 个人作品集</title>
-    <!-- 禁止浏览器缓存，解决老访客图片不显示问题 -->
+    <!-- 禁止浏览器缓存，解决老访客图片缺失 -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <!-- 标签图标放到head里面 -->
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* 首页顶部全屏轮播大图样式 */
+        .hero-banner {
+            width: 100%;
+            height: 90vh;
+            overflow: hidden;
+            position: relative;
+            margin-top: 80px;
+        }
+        .hero-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* 轮播切换按钮（简易左右切换） */
+        .banner-prev, .banner-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.6);
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .banner-prev { left: 2rem; }
+        .banner-next { right: 2rem; }
+        /* 轮播圆点指示器 */
+        .banner-dots {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            cursor: pointer;
+        }
+        .dot.active {
+            background: #fff;
+        }
+        /* 作品区域：桌面强制一行2个，不会自动变成3列 */
+        #works {
+            margin-top: 8rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+        /* 移动端适配 */
+        @media (max-width:768px){
+            .hero-banner {
+                height: 60vh;
+            }
+            #works {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- 顶部导航 -->
+    <!-- 顶部固定导航 -->
     <header class="header">
         <div class="logo">侯昌昌HCC</div>
         <nav class="nav">
-            <a href="#about">About</a>
+            <a href="about.html">About</a>
             <a href="#news">News</a>
             <a href="#works">Works</a>
         </nav>
     </header>
 
-    <!-- 5个作品，分别跳转独立详情页 -->
+    <!-- 新增：首页顶部全屏大图轮播区域 -->
+    <section class="hero-banner scroll-fade">
+        <button class="banner-prev">&lt;</button>
+        <button class="banner-next">&gt;</button>
+        <!-- 轮播图片，替换成你的全景渲染图 -->
+        <img class="banner-slide" src="banner1.jpg" alt="首页全景渲染1">
+        <img class="banner-slide" src="banner2.png" alt="首页全景渲染2" style="display:none;">
+        <img class="banner-slide" src="banner3.jpg" alt="首页全景渲染3" style="display:none;">
+        <!-- 底部圆点 -->
+        <div class="banner-dots">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+        </div>
+    </section>
+
+    <!-- 5个作品卡片，全部自带下拉渐入 scroll-fade -->
     <section id="works" class="works">
-        <!-- 项目1 → 跳 project1.html -->
-        <a href="project1.html" class="work-item">
+        <!-- 项目1 -->
+        <a href="project1.html" class="work-item scroll-fade">
             <img src="work1.png" alt="项目一">
             <div class="work-info">
                 <h3>产品设计 01</h3>
                 <p>2025 / 工业设计</p>
             </div>
         </a>
-
-        <!-- 项目2 → 跳 project2.html -->
-        <a href="project2.html" class="work-item">
+        <!-- 项目2 -->
+        <a href="project2.html" class="work-item scroll-fade">
             <img src="work2.png" alt="项目二">
             <div class="work-info">
                 <h3>产品设计 02</h3>
                 <p>2025 / 外观设计</p>
             </div>
         </a>
-
-        <!-- 项目3 → 跳 project3.html -->
-        <a href="project3.html" class="work-item">
+        <!-- 项目3 -->
+        <a href="project3.html" class="work-item scroll-fade">
             <img src="work3.png" alt="项目三">
             <div class="work-info">
                 <h3>产品设计 03</h3>
                 <p>2024 / 智能产品</p>
             </div>
         </a>
-
-        <!-- 项目4 → 跳 project4.html -->
-        <a href="project4.html" class="work-item">
+        <!-- 项目4 -->
+        <a href="project4.html" class="work-item scroll-fade">
             <img src="work4.png" alt="项目四">
             <div class="work-info">
                 <h3>产品设计 04</h3>
                 <p>2024 / 家居产品</p>
             </div>
         </a>
-
-        <!-- 项目5 → 跳 project5.html -->
-        <a href="project5.html" class="work-item">
+        <!-- 项目5 -->
+        <a href="project5.html" class="work-item scroll-fade">
             <img src="work5.png" alt="项目五">
             <div class="work-info">
                 <h3>产品设计 05</h3>
@@ -72,16 +153,72 @@
     </section>
 
     <!-- 关于我 -->
-    <section id="about" class="about">
+    <section id="about" class="about scroll-fade">
         <h2>About</h2>
         <p>这里写你的个人简介、设计理念、擅长领域。</p>
     </section>
 
     <!-- 底部社交链接 -->
-    <footer class="footer">
+    <footer class="footer scroll-fade">
         <a href="#">Instagram</a>
         <a href="#">Behance</a>
         <a href="#">LinkedIn</a>
     </footer>
+
+    <!-- 全局滚动渐入JS + 轮播自动播放JS -->
+    <script src="script.js"></script>
+    <script>
+        // 顶部大图轮播逻辑
+        const slides = document.querySelectorAll('.banner-slide');
+        const dots = document.querySelectorAll('.dot');
+        const prevBtn = document.querySelector('.banner-prev');
+        const nextBtn = document.querySelector('.banner-next');
+        let currentIndex = 0;
+        let autoPlayTimer;
+
+        function showSlide(index) {
+            slides.forEach(s => s.style.display = 'none');
+            dots.forEach(d => d.classList.remove('active'));
+            slides[index].style.display = 'block';
+            dots[index].classList.add('active');
+        }
+        // 自动轮播切换
+        function autoNext() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            showSlide(currentIndex);
+        }
+        // 启动自动播放
+        function startAutoPlay() {
+            autoPlayTimer = setInterval(autoNext, 4000);
+        }
+        // 停止自动播放（鼠标悬浮）
+        function stopAutoPlay() {
+            clearInterval(autoPlayTimer);
+        }
+        // 左右按钮点击
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            showSlide(currentIndex);
+        });
+        nextBtn.addEventListener('click', () => {
+            autoNext();
+        });
+        // 圆点点击切换
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                currentIndex = Number(dot.dataset.index);
+                showSlide(currentIndex);
+            })
+        })
+        // 鼠标悬停暂停轮播
+        document.querySelector('.hero-banner').addEventListener('mouseenter', stopAutoPlay);
+        document.querySelector('.hero-banner').addEventListener('mouseleave', startAutoPlay);
+
+        // 页面加载初始化轮播
+        window.addEventListener('load', () => {
+            showSlide(currentIndex);
+            startAutoPlay();
+        })
+    </script>
 </body>
 </html>
