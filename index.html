@@ -19,10 +19,19 @@
             position: relative;
             margin-top: 80px;
         }
+        /* 轮播图片叠加+淡入过渡核心 */
         .hero-banner img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease; /* 1秒淡入淡出，数值越大越柔和 */
+        }
+        .hero-banner img.active {
+            opacity: 1;
         }
         /* 作品区域：桌面强制一行2个，不会自动变成3列 */
         #works {
@@ -57,11 +66,11 @@
         </nav>
     </header>
 
-    <!-- 首页顶部全屏大图轮播区域，已完全删除底部圆点 -->
+    <!-- 首页顶部全屏大图轮播区域，淡入淡出切换 -->
     <section class="hero-banner scroll-fade">
-        <img class="banner-slide" src="banner1.png" alt="首页全景渲染1">
-        <img class="banner-slide" src="banner2.png" alt="首页全景渲染2" style="display:none;">
-        <img class="banner-slide" src="banner3.png" alt="首页全景渲染3" style="display:none;">
+        <img class="banner-slide active" src="banner1.png" alt="首页全景渲染1">
+        <img class="banner-slide" src="banner2.png" alt="首页全景渲染2">
+        <img class="banner-slide" src="banner3.png" alt="首页全景渲染3">
     </section>
 
     <!-- 5个作品卡片，全部自带下拉渐入 scroll-fade -->
@@ -121,17 +130,17 @@
         <a href="#">LinkedIn</a>
     </footer>
 
-    <!-- 全局滚动渐入JS + 轮播自动播放JS -->
+    <!-- 全局滚动渐入JS + 轮播淡入播放JS -->
     <script src="script.js"></script>
     <script>
-        // 顶部大图轮播逻辑
+        // 顶部大图轮播逻辑（适配淡入class切换）
         const slides = document.querySelectorAll('.banner-slide');
         let currentIndex = 0;
         let autoPlayTimer;
 
         function showSlide(index) {
-            slides.forEach(s => s.style.display = 'none');
-            slides[index].style.display = 'block';
+            slides.forEach(s => s.classList.remove('active'));
+            slides[index].classList.add('active');
         }
         // 自动轮播切换
         function autoNext() {
@@ -140,7 +149,7 @@
         }
         // 启动自动播放
         function startAutoPlay() {
-            autoPlayTimer = setInterval(autoNext, 2500);
+            autoPlayTimer = setInterval(autoNext, 3000);
         }
 
         // 页面加载初始化轮播
