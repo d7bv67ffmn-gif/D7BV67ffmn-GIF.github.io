@@ -145,11 +145,11 @@ body {
     margin-bottom: 40px;
 }
 .detail-images img {
-    width: 100%;
-    max-width: 1200px;
-    margin: 4rem auto;
+    max-width: 950px;
+    height: auto;
+    margin: 3rem auto;
     display: block;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .detail-content {
