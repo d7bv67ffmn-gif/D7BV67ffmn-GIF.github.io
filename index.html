@@ -140,15 +140,8 @@
         }
         // 启动自动播放
         function startAutoPlay() {
-            autoPlayTimer = setInterval(autoNext, 4000);
+            autoPlayTimer = setInterval(autoNext, 2500);
         }
-        // 停止自动播放（鼠标悬浮）
-        function stopAutoPlay() {
-            clearInterval(autoPlayTimer);
-        }
-        // 鼠标悬停暂停轮播
-        document.querySelector('.hero-banner').addEventListener('mouseenter', stopAutoPlay);
-        document.querySelector('.hero-banner').addEventListener('mouseleave', startAutoPlay);
 
         // 页面加载初始化轮播
         window.addEventListener('load', () => {
