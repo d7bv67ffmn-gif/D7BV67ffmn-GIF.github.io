@@ -24,25 +24,6 @@
             height: 100%;
             object-fit: cover;
         }
-        /* 轮播圆点指示器 */
-        .banner-dots {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 12px;
-        }
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.4);
-            cursor: pointer;
-        }
-        .dot.active {
-            background: #fff;
-        }
         /* 作品区域：桌面强制一行2个，不会自动变成3列 */
         #works {
             margin-top: 8rem;
@@ -76,18 +57,11 @@
         </nav>
     </header>
 
-    <!-- 新增：首页顶部全屏大图轮播区域（已移除左右箭头） -->
+    <!-- 首页顶部全屏大图轮播区域，已完全删除底部圆点 -->
     <section class="hero-banner scroll-fade">
-        <!-- 轮播图片，替换成你的全景渲染图 -->
-        <img class="banner-slide" src="banner1.jpg" alt="首页全景渲染1">
+        <img class="banner-slide" src="banner1.png" alt="首页全景渲染1">
         <img class="banner-slide" src="banner2.png" alt="首页全景渲染2" style="display:none;">
-        <img class="banner-slide" src="banner3.jpg" alt="首页全景渲染3" style="display:none;">
-        <!-- 底部圆点 -->
-        <div class="banner-dots">
-            <span class="dot active" data-index="0"></span>
-            <span class="dot" data-index="1"></span>
-            <span class="dot" data-index="2"></span>
-        </div>
+        <img class="banner-slide" src="banner3.png" alt="首页全景渲染3" style="display:none;">
     </section>
 
     <!-- 5个作品卡片，全部自带下拉渐入 scroll-fade -->
@@ -152,15 +126,12 @@
     <script>
         // 顶部大图轮播逻辑
         const slides = document.querySelectorAll('.banner-slide');
-        const dots = document.querySelectorAll('.dot');
         let currentIndex = 0;
         let autoPlayTimer;
 
         function showSlide(index) {
             slides.forEach(s => s.style.display = 'none');
-            dots.forEach(d => d.classList.remove('active'));
             slides[index].style.display = 'block';
-            dots[index].classList.add('active');
         }
         // 自动轮播切换
         function autoNext() {
@@ -169,19 +140,12 @@
         }
         // 启动自动播放
         function startAutoPlay() {
-            autoPlayTimer = setInterval(autoNext, 2000);
+            autoPlayTimer = setInterval(autoNext, 4000);
         }
         // 停止自动播放（鼠标悬浮）
         function stopAutoPlay() {
             clearInterval(autoPlayTimer);
         }
-        // 圆点点击切换
-        dots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                currentIndex = Number(dot.dataset.index);
-                showSlide(currentIndex);
-            })
-        })
         // 鼠标悬停暂停轮播
         document.querySelector('.hero-banner').addEventListener('mouseenter', stopAutoPlay);
         document.querySelector('.hero-banner').addEventListener('mouseleave', startAutoPlay);
