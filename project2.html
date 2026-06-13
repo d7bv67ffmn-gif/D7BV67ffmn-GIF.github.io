@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>产品设计 01 | 详情</title>
+    <title>产品设计 02 | 详情</title>
     <!-- 强制不缓存，和首页配套 -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
@@ -54,6 +54,38 @@
             line-height: 1.6;
             margin: 0;
         }
+        /* 底部前后项目导航容器，默认隐藏 */
+        .project-nav-bottom {
+            max-width: 1400px;
+            margin: 0 auto 6rem;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+        .project-nav-bottom.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .project-nav-bottom a {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #000;
+            font-size: 28px;
+            font-weight: 500;
+            opacity: 0.85;
+            transition: opacity 0.25s ease;
+        }
+        .project-nav-bottom a:hover {
+            opacity: 1;
+        }
+        .prev-link span {
+            transform: rotate(180deg);
+        }
         /* 移动端适配 */
         @media (max-width:768px){
             .project-intro{
@@ -65,6 +97,13 @@
             }
             .intro-title h2{
                 font-size:36px;
+            }
+            .project-nav-bottom a {
+                font-size: 20px;
+            }
+            .project-nav-bottom {
+                flex-direction: column;
+                gap: 2rem;
             }
         }
     </style>
@@ -81,60 +120,82 @@
 
     <div class="detail-container">
         <div class="detail-header scroll-fade">
-            <h1 class="detail-title">产品设计 01</h1>
-            <p class="detail-subtitle">2023 - 2025 / 工业设计</p>
+            <h1 class="detail-title">产品设计 02</h1>
+            <p class="detail-subtitle">2025 / 外观设计</p>
         </div>
         <div class="detail-images">
-            <!-- 首图添加滚动渐入类 -->
-            <img src="1.png" alt="E20 机器人吸尘器全景图" class="scroll-fade">
+            <img src="work2.png" alt="调压电源产品图" class="scroll-fade">
         </div>
 
-        <!-- 文字介绍区域 -->
         <div class="project-intro scroll-fade">
             <div class="intro-title">
-                <h2>E20</h2>
+                <h2>稳压调压电源</h2>
             </div>
             <div class="intro-text">
-                <h3>世界上第一台可拆卸组合机器人吸尘器</h3>
-                <p>我们突破了产品形态和清洁空间的界限，开创了一种可拆卸结构，将吸尘器和机器人结合在一起。</p>
-                <p>凭借强大的30,000PA吸力和多锥形旋风分离过滤系统，我们打造了市场上最强大的机器人吸尘器。配合自动清空工作台、吸尘器地板刷、二合一软刷、延长杆及其他配件，E20全面覆盖所有家庭清洁场景。</p>
+                <h3>户外便携大功率电压调节储能电源</h3>
+                <p>针对户外施工、车载设备、小型工业工具供电场景设计，紧凑型机身集成散热风道、可视化电压电流显示屏与多规格输出接口。</p>
+                <p>模块化卡扣结构适配各类电动工具电池包，支持快充输入与多路同时输出，外壳耐磨防滑，黄色工业识别配色提升户外辨识度。</p>
             </div>
         </div>
 
-        <!-- 底部四栏信息 -->
         <div class="project-meta scroll-fade">
             <div class="meta-block">
                 <h4>客户</h4>
-                <p>马赫技术</p>
+                <p>户外工具厂商</p>
             </div>
             <div class="meta-block">
                 <h4>年份</h4>
-                <p>2023 - 2025</p>
+                <p>2025</p>
             </div>
             <div class="meta-block">
                 <h4>设计师</h4>
-                <p>郑在完<br>西蒙·金<br>昂超</p>
+                <p>侯昌昌</p>
             </div>
             <div class="meta-block">
                 <h4>贡献</h4>
-                <p>项目负责人<br>概念开发<br>工业设计<br>用户体验<br>颜色、材质与表面处理<br>制造设计</p>
+                <p>外观造型<br>人机布局<br>CMF配色<br>结构配合</p>
             </div>
         </div>
 
-        <!-- 剩余全部产品大图 全部添加 scroll-fade 实现下拉渐入 -->
         <div class="detail-images">
-            <img src="2.png" alt="作品大图" class="scroll-fade">
+            <img src="xxx1.png" alt="产品多角度渲染" class="scroll-fade">
+            <img src="xxx2.png" alt="细节面板图" class="scroll-fade">
         </div>
 
         <div class="detail-content scroll-fade">
             <h2>项目背景</h2>
-            <p>家用清洁设备普遍存在功能单一、收纳繁琐、场景适配性差等痛点，市面上扫地机器人与手持吸尘器完全割裂，用户需要两套设备才能完成全屋深度清洁。本项目创新采用可拆卸模块化结构，将扫地底盘与手持吸尘主机合二为一，一站式解决全屋地面、缝隙、软装清洁需求。</p>
+            <p>传统户外电源体积笨重、无法兼容工具电池，本产品依托现有电池生态做轻量化便携设计，实现工具电池直接供电，兼顾大功率稳压输出与便携携带需求。</p>
             <h2 style="margin-top: 24px;">设计理念</h2>
-            <p>以“一体化极简家居”为核心设计语言，弱化家电机械冰冷感，圆润柔和轮廓适配各类家装风格。模块化快拆结构兼顾易用性与内部风道性能，30000Pa大吸力旋风过滤系统解决堵灰、吸力衰减问题，同时搭配全套替换配件覆盖全屋清洁场景，实现一台设备替代多台清洁家电。建模使用Rhino，渲染Keyshot，后期PS完成版式输出。</p>
+            <p>硬朗工业几何线条，分区功能面板简化操作逻辑，一体成型外壳降低生产成本，黄色高识别配色区分家用消费类产品，面向专业工具使用者。</p>
+        </div>
+
+        <!-- 页面底部 左右前后项目跳转 -->
+        <div class="project-nav-bottom">
+            <!-- 左侧：回到上一个项目 project1 -->
+            <a href="project1.html" class="prev-link">
+                <span>></span>
+                1
+            </a>
+            <!-- 右侧：下一个项目 project3 -->
+            <a href="project3.html" class="next-link">
+                3
+                <span>></span>
+            </a>
         </div>
     </div>
 
-    <!-- 滚动动效JS -->
     <script src="script.js"></script>
+    <script>
+        const navWrap = document.querySelector('.project-nav-bottom');
+        window.addEventListener('scroll', () => {
+            // 距离底部200px淡入显示底部导航
+            const distanceBottom = document.documentElement.scrollHeight - document.documentElement.scrollTop - document.documentElement.clientHeight;
+            if (distanceBottom < 200) {
+                navWrap.classList.add('show');
+            } else {
+                navWrap.classList.remove('show');
+            }
+        })
+    </script>
 </body>
 </html>

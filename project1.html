@@ -54,6 +54,34 @@
             line-height: 1.6;
             margin: 0;
         }
+        /* 页面底部下一页跳转，默认隐藏 */
+        .next-project-bottom {
+            max-width: 1400px;
+            margin: 0 auto 6rem;
+            padding: 0 2rem;
+            text-align: right;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+        .next-project-bottom.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .next-project-bottom a {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #000;
+            font-size: 28px;
+            font-weight: 500;
+            opacity: 0.85;
+            transition: opacity 0.25s ease;
+        }
+        .next-project-bottom a:hover {
+            opacity: 1;
+        }
         /* 移动端适配 */
         @media (max-width:768px){
             .project-intro{
@@ -65,6 +93,9 @@
             }
             .intro-title h2{
                 font-size:36px;
+            }
+            .next-project-bottom a {
+                font-size: 20px;
             }
         }
     </style>
@@ -149,9 +180,30 @@
             <h2 style="margin-top: 24px;">设计理念</h2>
             <p>以“一体化极简家居”为核心设计语言，弱化家电机械冰冷感，圆润柔和轮廓适配各类家装风格。模块化快拆结构兼顾易用性与内部风道性能，30000Pa大吸力旋风过滤系统解决堵灰、吸力衰减问题，同时搭配全套替换配件覆盖全屋清洁场景，实现一台设备替代多台清洁家电。建模使用Rhino，渲染Keyshot，后期PS完成版式输出。</p>
         </div>
+
+        <!-- 页面底部右侧下一个项目入口（滚动到底部才淡入显示） -->
+        <div class="next-project-bottom">
+            <a href="project2.html">
+                2
+                <span>></span>
+            </a>
+        </div>
     </div>
 
     <!-- 滚动动效JS -->
     <script src="script.js"></script>
+    <script>
+        // 页面滚动到底部时显示下一页按钮
+        const nextBtnWrap = document.querySelector('.next-project-bottom');
+        window.addEventListener('scroll', () => {
+            // 距离底部200px时显示
+            const scrollBottom = document.documentElement.scrollHeight - document.documentElement.scrollTop - document.documentElement.clientHeight;
+            if (scrollBottom < 200) {
+                nextBtnWrap.classList.add('show');
+            } else {
+                nextBtnWrap.classList.remove('show');
+            }
+        })
+    </script>
 </body>
 </html>
