@@ -82,20 +82,43 @@
         .next-project-bottom a:hover {
             opacity: 1;
         }
-        /* 移动端适配 */
+        /* 移动端全局修复：导航竖排、顶部留白、内容左右边距 */
         @media (max-width:768px){
+            /* 导航修复，解决挤压+遮挡 */
+            body {
+                padding-top: 140px !important;
+            }
+            .header {
+                flex-direction: column;
+                gap: 14px;
+                padding: 16px 20px !important;
+            }
+            .nav {
+                display: flex;
+                justify-content: center;
+                gap: 36px;
+            }
+            .nav a {
+                margin-left: 0 !important;
+            }
+            /* 详情自有布局适配 */
             .project-intro{
                 grid-template-columns: 1fr;
                 gap:1.5rem;
+                padding: 0 1rem;
             }
             .project-meta{
                 grid-template-columns: repeat(2,1fr);
+                padding: 0 1rem;
             }
             .intro-title h2{
                 font-size:36px;
             }
             .next-project-bottom a {
                 font-size: 20px;
+            }
+            .detail-container {
+                padding: 20px 1rem !important;
             }
         }
     </style>

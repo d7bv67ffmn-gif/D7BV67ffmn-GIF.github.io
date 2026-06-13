@@ -38,6 +38,9 @@ body {
     font-weight: 600;
     letter-spacing: -0.5px;
 }
+.header .logo {
+    color: #444;
+}
 
 .nav a {
     margin-left: 40px;
@@ -218,23 +221,40 @@ body {
     display: inline-block;
 }
 
-/* 移动端适配：宽度小于768px自动一行1个 */
+/* 移动端适配：宽度小于768px自动一行1个 + 修复导航错乱、内容遮挡 */
 @media (max-width: 768px) {
+    /* 手机页面整体顶部留白加大，避开两行导航 */
+    body {
+        padding-top: 140px !important;
+    }
     .works {
         grid-template-columns: 1fr;
         padding: 0 20px 40px;
         gap: 30px;
     }
+    /* 导航上下排布 */
     .header {
         padding: 20px;
         flex-direction: column;
         gap: 16px;
     }
+    /* 导航链接居中排列 */
+    .nav {
+        display: flex;
+        gap: 32px;
+    }
+    /* 清除桌面端左边距，防止挤压溢出 */
     .nav a {
-        margin: 0 16px;
+        margin-left: 0 !important;
+        margin: 0;
     }
     .detail-container {
         padding: 20px;
+    }
+    /* 详情页图片自适应屏幕宽度 */
+    .detail-images img {
+        max-width: 100%;
+        margin: 2rem auto;
     }
     .project-nav-bottom {
         flex-direction: column;
@@ -284,6 +304,4 @@ body {
 }
 .parallax-wrap img {
     transition: transform 0.1s linear;
-}.header .logo {
-    color: #000000;
 }
