@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品设计 02 | 详情</title>
+    <!-- 强制不缓存，和首页配套 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" href="style.css">
+    <style>
+/* 通栏全屏首图样式 */
+.banner-full {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    margin-top: 2rem;
+    margin-bottom: 6rem;
+}
+.banner-full img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+}
+@media (max-width:768px){
+    .banner-full {
+        margin-bottom: 4rem;
+    }
+}
+body {
+  background-color: #f8f8f8; /* 浅灰色，柔和不刺眼 */
+}
+        /* 详情页项目简介专用排版，匹配截图左右分栏风格 */
+        .project-intro {
+            max-width: 1400px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 4rem;
+        }
+        .intro-title h2 {
+            font-size: 48px;
+            font-weight: 600;
+            margin: 0;
+        }
+        .intro-text h3 {
+            font-size: 20px;
+            font-weight: 500;
+            margin: 0 0 2rem 0;
+        }
+        .intro-text p {
+            line-height: 1.7;
+            font-size: 15px;
+            color: #333;
+            margin: 0.6rem 0;
+        }
+        /* 底部信息四栏布局：客户/年份/设计师/贡献 */
+        .project-meta {
+            max-width: 1400px;
+            margin: 8rem auto 4rem;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+        .meta-block h4 {
+            font-size: 14px;
+            font-weight: 400;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        .meta-block p {
+            line-height: 1.6;
+            margin: 0;
+        }
+        /* 底部前后项目导航容器，默认隐藏 */
+        .project-nav-bottom {
+            max-width: 1400px;
+            margin: 0 auto 6rem;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+        .project-nav-bottom.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .project-nav-bottom a {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #000;
+            font-size: 28px;
+            font-weight: 500;
+            opacity: 0.85;
+            transition: opacity 0.25s ease;
+        }
+        .project-nav-bottom a:hover {
+            opacity: 1;
+        }
+        .prev-link span {
+            transform: rotate(180deg);
+            display: inline-block;
+        }
+        /* 移动端全局修复：导航竖排、顶部留白、内容左右安全边距 */
+        @media (max-width:768px){
+            /* 解决手机内容被两行导航遮挡 */
+            body {
+                padding-top: 140px !important;
+            }
+            /* 导航改为上下居中排布，消除文字挤压 */
+            .header {
+                flex-direction: column;
+                gap: 14px;
+                padding: 16px 20px !important;
+            }
+            .nav {
+                display: flex;
+                justify-content: center;
+                gap: 36px;
+            }
+            .nav a {
+                margin-left: 0 !important;
+            }
+            /* 详情页面左右留白，不贴屏幕边框 */
+            .detail-container {
+                padding: 20px 1rem !important;
+            }
+            .project-intro{
+                grid-template-columns: 1fr;
+                gap:1.5rem;
+                padding: 0 1rem;
+            }
+            .project-meta{
+                grid-template-columns: repeat(2,1fr);
+                padding: 0 1rem;
+            }
+            .intro-title h2{
+                font-size:36px;
+            }
+            .project-nav-bottom a {
+                font-size: 20px;
+            }
+            .project-nav-bottom {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo"><a href="index.html" style="color: inherit; text-decoration: none;">侯昌昌HCC</a></div>
+        <nav class="nav">
+            <a href="about.html">About</a>
+            <a href="index.html#news">News</a>
+            <a href="index.html#works">Works</a>
+        </nav>
+    </header>
+
+    <!-- 通栏全屏首图 -->
+    <div class="banner-full scroll-fade">
+        <img src="work5.png" alt="调压电源产品图">
+    </div>
+
+    <div class="detail-container">
+        <div class="detail-header scroll-fade">
+            <h1 class="detail-title">产品设计 02</h1>
+            <p class="detail-subtitle">2025 / 外观设计</p>
+        </div>
+
+        <div class="project-intro scroll-fade">
+            <div class="intro-title">
+                <h2>稳压调压电源</h2>
+            </div>
+            <div class="intro-text">
+                <h3>户外便携大功率电压调节储能电源</h3>
+                <p>针对户外施工、车载设备、小型工业工具供电场景设计，紧凑型机身集成散热风道、可视化电压电流显示屏与多规格输出接口。</p>
+                <p>模块化卡扣结构适配各类电动工具电池包，支持快充输入与多路同时输出，外壳耐磨防滑，黄色工业识别配色提升户外辨识度。</p>
+            </div>
+        </div>
+
+        <div class="project-meta scroll-fade">
+            <div class="meta-block">
+                <h4>客户</h4>
+                <p>户外工具厂商</p>
+            </div>
+            <div class="meta-block">
+                <h4>年份</h4>
+                <p>2025</p>
+            </div>
+            <div class="meta-block">
+                <h4>设计师</h4>
+                <p>侯昌昌</p>
+            </div>
+            <div class="meta-block">
+                <h4>贡献</h4>
+                <p>外观造型<br>人机布局<br>CMF配色<br>结构配合</p>
+            </div>
+        </div>
+
+        <div class="detail-images">
+            <img src="dgn1.png" alt="产品多角度渲染" class="scroll-fade">
+            <img src="dgn2.png" alt="细节面板图" class="scroll-fade">
+            <img src="dgn4.png" alt="细节面板图" class="scroll-fade">
+            <img src="dgn3.png" alt="细节面板图" class="scroll-fade">
+            <img src="dgn5.png" alt="细节面板图" class="scroll-fade">
+        </div>
+
+        <div class="detail-content scroll-fade">
+            <h2>项目背景</h2>
+            <p>传统户外电源体积笨重、无法兼容工具电池，本产品依托现有电池生态做轻量化便携设计，实现工具电池直接供电，兼顾大功率稳压输出与便携携带需求。</p>
+            <h2 style="margin-top: 24px;">设计理念</h2>
+            <p>硬朗工业几何线条，分区功能面板简化操作逻辑，一体成型外壳降低生产成本，黄色高识别配色区分家用消费类产品，面向专业工具使用者。</p>
+        </div>
+
+        <!-- 页面底部 左右前后项目跳转 -->
+        <div class="project-nav-bottom">
+            <!-- 左侧：回到上一个项目 project1 -->
+            <a href="project4.html" class="prev-link">
+                <span>></span>
+                4
+            </a>
+            <!-- 右侧：下一个项目 project3 -->
+            <a href="project6.html" class="next-link">
+                6
+                <span>></span>
+            </a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        const navWrap = document.querySelector('.project-nav-bottom');
+        window.addEventListener('scroll', () => {
+            // 距离底部200px淡入显示底部导航
+            const distanceBottom = document.documentElement.scrollHeight - document.documentElement.scrollTop - document.documentElement.clientHeight;
+            if (distanceBottom < 200) {
+                navWrap.classList.add('show');
+            } else {
+                navWrap.classList.remove('show');
+            }
+        })
+    </script>
+</body>
+</html>
