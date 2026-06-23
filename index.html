@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>侯昌昌 | 个人作品集</title>
+    <!-- 禁止浏览器缓存，解决老访客图片缺失 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 首页顶部全屏轮播大图样式 */
+        .hero-banner {
+            width: 100%;
+            height: 90vh;
+            overflow: hidden;
+            position: relative;
+            margin-top: 80px;
+        }
+        /* 淡入淡出核心样式 */
+        .hero-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            /* 1秒柔和渐变，可改成1.2s更慢/0.8s更快 */
+            transition: opacity 1s ease;
+        }
+        .hero-banner img.active {
+            opacity: 1;
+        }
+        /* 作品区域：桌面强制一行2个，不会自动变成3列 */
+        #works {
+            margin-top: 8rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+        /* 移动端完整适配修复 */
+        @media (max-width:768px){
+            .hero-banner {
+                height: 60vh;
+                margin-top: 130px;
+            }
+            #works {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+            /* 导航垂直居中排布 */
+            .header {
+                flex-direction: column;
+                gap: 14px;
+                padding: 16px 20px !important;
+            }
+            .nav {
+                display: flex;
+                gap: 36px;
+            }
+            .nav a {
+                margin-left: 0 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部固定导航 -->
+    <header class="header">
+        <div class="logo">侯昌昌</div>
+        <nav class="nav">
+            <a href="about.html">About</a>
+            <a href="#news">News</a>
+            <a href="#works">Works</a>
+        </nav>
+    </header>
+
+    <!-- 首页顶部全屏大图轮播区域，淡入淡出切换 -->
+    <section class="hero-banner scroll-fade">
+        <img class="banner-slide active" src="banner1.png" alt="首页全景渲染1">
+        <img class="banner-slide" src="banner2.png" alt="首页全景渲染2">
+        <img class="banner-slide" src="banner3.png" alt="首页全景渲染3">
+        <img class="banner-slide" src="banner4.jpg" alt="首页全景渲染3">
+        <img class="banner-slide" src="banner5.png" alt="首页全景渲染3">
+        <img class="banner-slide" src="banner6.jpg" alt="首页全景渲染3">
+    </section>
+
+    <!-- 5个作品卡片，全部自带下拉渐入 scroll-fade -->
+    <section id="works" class="works">
+        <!-- 项目1 -->
+        <a href="project1.html" class="work-item scroll-fade">
+            <img src="work1.png" alt="项目一">
+            <div class="work-info">
+                <h3>FlexPanel多角度折叠式锂电工作灯</h3>
+                <p>2025 / 全流程设计</p>
+            </div>
+        </a>
+        <!-- 项目2 -->
+        <a href="project2.html" class="work-item scroll-fade">
+            <img src="work2.png" alt="项目二">
+            <div class="work-info">
+                <h3>多功能调压器</h3>
+                <p>2025 / 全流程设计</p>
+            </div>
+        </a>
+        <!-- 项目3 -->
+        <a href="project3.html" class="work-item scroll-fade">
+            <img src="work3.png" alt="项目三">
+            <div class="work-info">
+                <h3>Air shock自行车充气泵</h3>
+                <p>2024 / 概念产品</p>
+            </div>
+        </a>
+        <!-- 项目4 -->
+        <a href="project4.html" class="work-item scroll-fade">
+            <img src="work4.png" alt="项目四">
+            <div class="work-info">
+                <h3>FourPack Pro 四电池逆变器</h3>
+                <p>2024 / 全流程设计</p>
+            </div>
+        </a>
+        <!-- 项目5 -->
+        <a href="project5.html" class="work-item scroll-fade">
+            <img src="dgn111_画板 1.jpg" alt="项目五">
+            <div class="work-info">
+                <h3>PocketCharge Max</h3>
+                <p>2024 / 全流程设计</p>
+            </div>
+        </a>
+        <!-- 项目6 -->
+        <a href="project6.html" class="work-item scroll-fade">
+            <img src="cdt1.jpg" alt="项目六">
+            <div class="work-info">
+                <h3>140W氮化镓充电器</h3>
+                <p>2024 / 工业设计</p>
+            </div>
+        </a>
+                <!-- 项目6 -->
+        <a href="project7.html" class="work-item scroll-fade">
+            <img src="v8_画板 1.jpg" alt="项目七">
+            <div class="work-info">
+                <h3>V-pack</h3>
+                <p>2024 /个人</p>
+            </div>
+     </a>
+    </section>
+
+    <!-- 关于我 -->
+    <section id="about" class="about scroll-fade">
+        <h2></h2>
+        <p>HCC DESIGN</p>
+    </section>
+
+    <!-- 底部社交链接 -->
+    <footer class="footer scroll-fade">
+        <a href="#">Instagram</a>
+        <a href="#">Behance</a>
+        <a href="#">LinkedIn</a>
+    </footer>
+
+    <!-- 全局滚动渐入JS + 轮播淡入播放JS -->
+    <script src="script.js"></script>
+    <script>
+        // 顶部大图轮播逻辑（适配淡入active类）
+        const slides = document.querySelectorAll('.banner-slide');
+        let currentIndex = 0;
+        let autoPlayTimer;
+
+        function showSlide(index) {
+            slides.forEach(s => s.classList.remove('active'));
+            slides[index].classList.add('active');
+        }
+        // 自动轮播切换
+        function autoNext() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            showSlide(currentIndex);
+        }
+        // 启动自动播放
+        function startAutoPlay() {
+            autoPlayTimer = setInterval(autoNext, 3000);
+        }
+
+        // 页面加载初始化轮播
+        window.addEventListener('load', () => {
+            showSlide(currentIndex);
+            startAutoPlay();
+        })
+    </script>
+</body>
+</html>

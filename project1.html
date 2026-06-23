@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>产品设计 01 | 详情</title>
+    <!-- 强制不缓存，和首页配套 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" href="style.css">
+    <style>
+body {
+  background-color: #f8f8f8; /* 浅灰色，柔和不刺眼 */
+}
+        /* ========== 新增通栏首图样式 ========== */
+        .banner-full {
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);
+            margin-top: 2rem;
+            margin-bottom: 6rem;
+        }
+        .banner-full img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+        /* 图片+说明文字容器 */
+        .img-item {
+            margin: 3rem 0;
+        }
+        .img-item img,
+        .img-item video {
+            width: 100%;
+            max-width: 920px;
+            display: block;
+            margin: 0 auto;
+            object-fit: contain;
+        }
+        /* 图片中间/下方介绍文字，上下均等间距 */
+        .img-desc {
+            max-width: 920px;
+            margin: 20px auto;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+            text-align: center;
+            padding: 0 1rem;
+        }
+        /* KeyShot 360预览模块样式 */
+        .ks360-wrap {
+            max-width: 920px;
+            margin: 8rem auto;
+            padding: 0 1rem;
+        }
+        .ks360-box {
+            width: 100%;
+            height: 0;
+            padding-bottom: 60%;
+            position: relative;
+            background: #f5f5f5;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .ks360-box iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .ks-tip {
+            text-align: center;
+            margin-top: 14px;
+            font-size: 14px;
+            color: #666;
+        }
+        /* 详情页项目简介专用排版，匹配截图左右分栏风格 */
+        .project-intro {
+            max-width: 1400px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 4rem;
+        }
+        .intro-title h2 {
+            font-size: 48px;
+            font-weight: 600;
+            margin: 0;
+        }
+        .intro-text h3 {
+            font-size: 20px;
+            font-weight: 500;
+            margin: 0 0 2rem 0;
+        }
+        .intro-text p {
+            line-height: 1.7;
+            font-size: 15px;
+            color: #333;
+            margin: 0.6rem 0;
+        }
+        /* 底部信息四栏布局：客户/年份/设计师/贡献 */
+        .project-meta {
+            max-width: 1400px;
+            margin: 8rem auto 4rem;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+        .meta-block h4 {
+            font-size: 14px;
+            font-weight: 400;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        .meta-block p {
+            line-height: 1.6;
+            margin: 0;
+        }
+        /* 页面底部下一页跳转，默认隐藏 */
+        .next-project-bottom {
+            max-width: 1400px;
+            margin: 0 auto 6rem;
+            padding: 0 2rem;
+            text-align: right;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+        .next-project-bottom.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .next-project-bottom a {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #000;
+            font-size: 28px;
+            font-weight: 500;
+            opacity: 0.85;
+            transition: opacity 0.25s ease;
+        }
+        .next-project-bottom a:hover {
+            opacity: 1;
+        }
+        /* 移动端全局修复：导航竖排、顶部留白、内容左右边距 */
+        @media (max-width:768px){
+            /* 导航修复，解决挤压+遮挡 */
+            body {
+                padding-top: 140px !important;
+            }
+            .header {
+                flex-direction: column;
+                gap: 14px;
+                padding: 16px 20px !important;
+            }
+            .nav {
+                display: flex;
+                justify-content: center;
+                gap: 36px;
+            }
+            .nav a {
+                margin-left: 0 !important;
+            }
+            /* 通栏图片手机适配 */
+            .banner-full {
+                margin-bottom: 4rem;
+            }
+            .img-item {
+                margin: 2rem 0;
+            }
+            .img-desc {
+                font-size: 13px;
+                margin: 16px auto;
+            }
+            /* 360模块手机适配 */
+            .ks360-wrap {
+                margin: 5rem auto;
+            }
+            .ks-tip {
+                font-size: 13px;
+            }
+            /* 详情自有布局适配 */
+            .project-intro{
+                grid-template-columns: 1fr;
+                gap:1.5rem;
+                padding: 0 1rem;
+            }
+            .project-meta{
+                grid-template-columns: repeat(2,1fr);
+                padding: 0 1rem;
+            }
+            .intro-title h2{
+                font-size:36px;
+            }
+            .next-project-bottom a {
+                font-size: 20px;
+            }
+            .detail-container {
+                padding: 20px 1rem !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo"><a href="index.html" style="color: inherit; text-decoration: none;">侯昌昌</a></div>
+        <nav class="nav">
+            <a href="about.html">About</a>
+            <a href="index.html#news">News</a>
+            <a href="index.html#works">Works</a>
+        </nav>
+    </header>
+
+    <!-- ========== 通栏首图 移出窄容器，全屏展示 ========== -->
+    <div class="banner-full scroll-fade">
+        <img src="1-1.jpg" alt="E20 机器人吸尘器全景图">
+    </div>
+
+    <div class="detail-container">
+        <div class="detail-header scroll-fade">
+            <h1 class="detail-title">产品设计 01</h1>
+            <p class="detail-subtitle">2023 - 2025 / 工业设计</p>
+        </div>
+
+        <!-- 文字介绍区域 -->
+        <div class="project-intro scroll-fade">
+            <div class="intro-title">
+                <h2>PWL-10</h2>
+            </div>
+            <div class="intro-text">
+                <h3>FlexPanel多角度折叠式锂电工作灯</h3>
+                <p>通过模块化折叠灯板、多形态固定结构、智能调光控制系统，解决传统单头工作灯照射范围窄、收纳体积大、固定方式单一、亮度不可调、续航受限等行业痛点，兼顾工业耐用性与便携收纳性能。</p>
+                <p>凭借强大10000lumen的照明亮度，满足多户外施工、汽修检修、工地抢修、露营应急、车库维修等多场景照明需求</p>
+            </div>
+        </div>
+
+        <!-- 底部四栏信息 -->
+        <div class="project-meta scroll-fade">
+            <div class="meta-block">
+                <h4>客户</h4>
+                <p>AZOCEK</p>
+            </div>
+            <div class="meta-block">
+                <h4>年份</h4>
+                <p>2025 - 2026</p>
+            </div>
+            <div class="meta-block">
+                <h4>设计师</h4>
+                <p>侯昌昌<br>殷子恒<br></p>
+            </div>
+            <div class="meta-block">
+                <h4>贡献</h4>
+                <p>项目负责<br>概念开发<br>结构设计<br>用户体验<br>颜色、材质与表面处理<br>制造设计</p>
+            </div>
+        </div>
+
+        <!-- 剩余全部产品大图 全部添加 scroll-fade 实现下拉渐入 -->
+        <div class="detail-images">
+            <div class="img-item">
+                <img src="新3_画板 1.jpg" alt="整机外观渲染" class="scroll-fade">
+                <p class="img-desc scroll-fade">机身顶部集成两枚金属可伸缩挂扣，可悬挂钢管、脚手架、树枝、厂房管线，解放双手悬空大范围照明；</p>
+            </div>
+            <div class="img-item">
+                <img src="2.jpg" alt="家居场景效果图" class="scroll-fade">
+                <p class="img-desc scroll-fade">整机搭载四块独立LED发光灯板与中部可拆卸便携灯，每块灯板通过双向阻尼转轴连接主机身。</p>
+            </div>
+            <div class="img-item">
+                <img src="10.jpg" alt="手持拆分形态" class="scroll-fade">
+                <p class="img-desc scroll-fade">所有灯板可向内对折收拢，五扇灯板完全贴合机身，大幅压缩整机体积，收纳后呈紧凑方块造型，可轻松放入工具包、后备箱；</p>
+            </div>
+            <div class="img-item">
+                <img src="4.png" alt="底部扫地模组" class="scroll-fade">
+                <p class="img-desc scroll-fade"></p>
+            </div>
+            <div class="img-item">
+                <img src="5.png" alt="尘桶与过滤组件" class="scroll-fade">
+                <p class="img-desc scroll-fade">单块灯板可上下、左右多角度翻转，能实现单侧局部补光、360° 环绕全域照明、单侧定向聚光等多种照射形态；</p>
+            </div>
+            <div class="img-item">
+                <img src="21.jpg" alt="全套配件套装" class="scroll-fade">
+                <p class="img-desc scroll-fade"></p>
+            </div>
+            <!-- 作品集视频播放器，自动适配宽度、静音、循环播放、加载占位 -->
+            <div class="img-item">
+                <video class="scroll-fade" autoplay muted loop playsinline preload="auto">
+                    <source src="sp1.mp4" type="video/mp4">
+                    你的浏览器不支持视频播放
+                </video>
+                <p class="img-desc scroll-fade"></p>
+            </div>
+            <div class="img-item">
+                <img src="6.jpg" alt="机身侧面线条" class="scroll-fade">
+                <p class="img-desc scroll-fade"></p>
+            </div>
+            <div class="img-item">
+                <img src="3.jpg" alt="充电底座展示" class="scroll-fade">
+                <p class="img-desc scroll-fade">可单独开启部分灯板，按需控制照射面积与功耗，兼顾大范围铺光与定点精细检修。</p>
+            </div>
+            <div class="img-item">
+                <img src="7.jpg" alt="控制面板细节" class="scroll-fade">
+                <p class="img-desc scroll-fade">同时一面展开四灯板，扩大照明面积</p>
+            </div>
+            <div class="img-item">
+                <img src="8.jpg" alt="边角清扫效果" class="scroll-fade">
+                <p class="img-desc scroll-fade">加宽防滑橡胶底座，底部内置防滑硅胶垫，车库、工作台地面直立摆放不打滑；底座预留标准 1/4 相机螺孔，可外接三脚架、支架拓展高位照明</p>
+            </div>
+            <div class="img-item">
+                <img src="9.png" alt="尘桶拆卸结构" class="scroll-fade">
+                <p class="img-desc scroll-fade">无级调光：10000 流明峰值亮度可无极调节，低亮度满足夜间露营柔光、高亮度适配工地大面积铺光；
+多模式光效：支持冷白光 / 中性光切换，增设 SOS 爆闪应急模式，适用于道路抢修、户外遇险求救；
+直观操作反馈：荧光绿按键边框暗光环境清晰可见，按键行程适中，带手套也可精准操作。</p>
+            </div>
+            <div class="img-item">
+                <img src="9-1.jpg" alt="过滤芯拆解" class="scroll-fade">
+                <p class="img-desc scroll-fade">机身顶部一体化注塑手提握把，人体工学弧形设计，手握持不硌手；机身背部预留电池包快装卡槽，可外接配套大容量锂电包，摆脱有线电源束缚，适配无市电户外场景。</p>
+            </div>
+            <div class="img-item">
+                <img src="31.jpg" alt="地毯深度清洁场景" class="scroll-fade">
+                <p class="img-desc scroll-fade">侧边拥有1A1C输出，可用于紧急情况下使用</p>
+            </div>
+            <div class="img-item">
+                <img src="11-1.png" alt="多刷头搭配展示" class="scroll-fade">
+                <p class="img-desc scroll-fade"></p>
+            </div>
+            <div class="img-item">
+                <img src="12.jpg" alt="卧室摆放效果图" class="scroll-fade">
+                <p class="img-desc scroll-fade">口袋级磁吸折叠便携LED工作补光灯,产品采用一体化磁吸+内置大容量锂电池，UBS-C与Pogo pin两种供电方式</p>
+            </div>
+            <div class="img-item">
+                <img src="13.jpg" alt="手持长杆模式" class="scroll-fade">
+                <p class="img-desc scroll-fade">侧面功能按键选用荧光亮绿色作为视觉区分；正面为一体化柔光乳白色灯罩</p>
+            </div>
+            <div class="img-item">
+                <img src="14.png" alt="滚刷防缠绕结构" class="scroll-fade">
+                <p class="img-desc scroll-fade">机身背部内置整块强力钕铁硼磁吸片，全背部吸附，可稳定吸附在金属表面：机身尾部预留标准 1/4 螺纹孔，可搭配配套挂扣支架拓展，无金属吸附面时可悬挂、外接三脚架使用，磁吸 + 悬挂双固定模式全覆盖场景。</p>
+            </div>
+            <div class="img-item">
+                <img src="14-1.jpg" alt="尘桶容量展示" class="scroll-fade">
+                <p class="img-desc scroll-fade">标配定制 EVA 硬质收纳包，包身带便携登山挂扣，包内分层网袋隔断，可完整收纳灯具、Type-C 充电线、金属悬挂支架、说明书，所有配件一体收纳，防压防刮，外出露营、随车携带</p>
+            </div>
+            <div class="img-item">
+                <img src="16.jpg" alt="宠物毛发清洁场景" class="scroll-fade">
+                <p class="img-desc scroll-fade">灯板搭载高密度贴片 LED 灯珠，配合双层柔光扩散结构，发光面积大、光线均匀无暗区，超声波焊接，整体防水防尘等级可达到IP67</p>
+            </div>
+            <div class="img-item">
+                <img src="15.jpg" alt="整机侧视渲染" class="scroll-fade">
+                <p class="img-desc scroll-fade">3D模型、结构验证</p>
+            </div>
+            <div class="img-item">
+                <img src="17.jpg" alt="配件收纳仓" class="scroll-fade">
+                <p class="img-desc scroll-fade">样机验证、功能验证</p>
+            </div>
+            <div class="img-item">
+                <img src="18.jpg" alt="玄关放置场景" class="scroll-fade">
+                <p class="img-desc scroll-fade">成品展示</p>
+            </div>
+            <div class="img-item">
+                <img src="23.jpg" alt="风道内部结构剖视" class="scroll-fade">
+                <p class="img-desc scroll-fade"></p>
+            </div>
+            <div class="img-item">
+                <img src="19.png" alt="手持缝隙刷头实操" class="scroll-fade">
+                <p class="img-desc scroll-fade"></p>
+            </div>
+            <div class="img-item">
+                <img src="20.png" alt="完整整机套装渲染" class="scroll-fade">
+                <p class="img-desc scroll-fade"></p>
+            </div>
+        </div>
+
+<!-- KeyShot 360度产品预览模块（已插入） -->
+        <div class="ks360-wrap scroll-fade">
+            <div class="ks360-box">
+                <!-- 后续把这里src替换为你ks导出文件夹里的html路径 -->
+                <iframe src="xr-fold/LED渲染.1.html" allowfullscreen></iframe>
+            </div>
+            <p class="ks-tip scroll-fade">左右拖拽画面360°全方位查看产品</p>
+        </div>
+        
+        <!-- 页面底部右侧下一个项目入口（滚动到底部才淡入显示） -->
+        <div class="next-project-bottom">
+            <a href="project2.html">
+                多功能调压器
+                <span>></span>
+            </a>
+        </div>
+    </div>
+
+    <!-- 滚动动效JS -->
+    <script src="script.js"></script>
+    <script>
+        // 页面滚动到底部时显示下一页按钮
+        const nextBtnWrap = document.querySelector('.next-project-bottom');
+        window.addEventListener('scroll', () => {
+            // 距离底部200px时显示
+            const scrollBottom = document.documentElement.scrollHeight - document.documentElement.scrollTop - document.documentElement.clientHeight;
+            if (scrollBottom < 200) {
+                nextBtnWrap.classList.add('show');
+            } else {
+                nextBtnWrap.classList.remove('show');
+            }
+        })
+    </script>
+</body>
+</html>

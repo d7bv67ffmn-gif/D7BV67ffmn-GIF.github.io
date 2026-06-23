@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品设计 02 | 详情</title>
+    <!-- 强制不缓存，和首页配套 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" href="style.css">
+    <style>
+body {
+  background-color: #f8f8f8;
+}
+        /* 通栏首图样式 全屏左右贴边 */
+        .banner-full {
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);
+            margin-top: 2rem;
+            margin-bottom: 6rem;
+        }
+        .banner-full img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* 图文通用容器：统一区块间距，对标参考页排版 */
+        .img-block {
+            max-width: 920px;
+            margin: 0 auto 4rem;
+        }
+        /* 图片样式 */
+        .img-block img {
+            width: 100%;
+            display: block;
+            object-fit: contain;
+        }
+        /* 图文说明文字：间距、字体、对齐完全对标参考页面 */
+        .img-desc {
+            margin: 1.8rem auto;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.7;
+            text-align: center;
+            padding: 0 1rem;
+            max-width: 920;
+        }
+
+        /* 详情页项目简介专用排版，匹配截图左右分栏风格 */
+        .project-intro {
+            max-width: 1400px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 4rem;
+        }
+        .intro-title h2 {
+            font-size: 48px;
+            font-weight: 600;
+            margin: 0;
+        }
+        .intro-text h3 {
+            font-size: 20px;
+            font-weight: 500;
+            margin: 0 0 2rem 0;
+        }
+        .intro-text p {
+            line-height: 1.7;
+            font-size: 15px;
+            color: #333;
+            margin: 0.6rem 0;
+        }
+        /* 底部信息四栏布局：客户/年份/设计师/贡献 */
+        .project-meta {
+            max-width: 1400px;
+            margin: 8rem auto 4rem;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+        .meta-block h4 {
+            font-size: 14px;
+            font-weight: 400;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        .meta-block p {
+            line-height: 1.6;
+            margin: 0;
+        }
+        /* 底部前后项目导航容器，默认隐藏 */
+        .project-nav-bottom {
+            max-width: 1400px;
+            margin: 0 auto 6rem;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+        .project-nav-bottom.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .project-nav-bottom a {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #000;
+            font-size: 28px;
+            font-weight: 500;
+            opacity: 0.85;
+            transition: opacity 0.25s ease;
+        }
+        .project-nav-bottom a:hover {
+            opacity: 1;
+        }
+        .prev-link span {
+            transform: rotate(180deg);
+            display: inline-block;
+        }
+        /* KeyShot360预览模块 修复底部裁切 */
+        .ks360-wrap {
+            max-width: 920px;
+            margin: 3rem auto 5rem;
+            padding: 0 1rem;
+        }
+        .ks360-box {
+            width: 100%;
+            height: 0;
+            padding-bottom: 52%;
+            position: relative;
+            background: #fff;
+            overflow: hidden;
+        }
+        .ks360-box iframe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            border: none;
+            transform: translate(-50%, -50%) scale(1.08);
+        }
+        .ks-tip {
+            text-align: center;
+            margin-top: 14px;
+            font-size: 14px;
+            color: #666;
+        }
+        /* 移动端全局适配 */
+        @media (max-width:768px){
+            /* 解决手机内容被两行导航遮挡 */
+            body {
+                padding-top: 140px !important;
+            }
+            .header {
+                flex-direction: column;
+                gap: 14px;
+                padding: 16px 20px !important;
+            }
+            .nav {
+                display: flex;
+                justify-content: center;
+                gap: 36px;
+            }
+            .nav a {
+                margin-left: 0 !important;
+            }
+            .banner-full {
+                margin-bottom: 4rem;
+            }
+            .img-block {
+                margin: 0 auto 2.5rem;
+            }
+            .img-desc {
+                font-size: 13px;
+                margin: 1.2rem auto;
+            }
+            .detail-container {
+                padding: 20px 1rem !important;
+            }
+            .project-intro{
+                grid-template-columns: 1fr;
+                gap:1.5rem;
+                padding: 0 1rem;
+            }
+            .project-meta{
+                grid-template-columns: repeat(2,1fr);
+                padding: 0 1rem;
+            }
+            .intro-title h2{
+                font-size:36px;
+            }
+            .project-nav-bottom a {
+                font-size: 20px;
+            }
+            .project-nav-bottom {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            /* 移动端360 */
+            .ks360-wrap {
+                margin: 2rem auto 4rem;
+            }
+            .ks-tip {
+                font-size: 13px;
+            }
+        }
+        /* 底部导航间距重写 */
+        .project-nav-bottom {
+            margin: 15rem auto 6rem !important;
+        }
+        @media (max-width:768px){
+            .project-nav-bottom {
+                margin: 5rem auto 4rem !important;
+                gap: 3rem !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo"><a href="index.html" style="color: inherit; text-decoration: none;">侯昌昌</a></div>
+        <nav class="nav">
+            <a href="about.html">About</a>
+            <a href="index.html#news">News</a>
+            <a href="index.html#works">Works</a>
+        </nav>
+    </header>
+
+    <!-- 通栏全屏首图 -->
+    <div class="banner-full scroll-fade">
+        <img src="tyq11_画板 1.jpg" alt="调压电源产品图">
+    </div>
+
+    <div class="detail-container">
+        <div class="detail-header scroll-fade">
+            <h1 class="detail-title">产品设计 02</h1>
+            <p class="detail-subtitle">2025 / 外观设计</p>
+        </div>
+
+        <div class="project-intro scroll-fade">
+            <div class="intro-title">
+                <h2>VR-300</h2>
+            </div>
+            <div class="intro-text">
+                <h3>多功能调压器</h3>
+                <p>20V 锂电专用便携式 DC-DC 可调稳压电源调压器，面向户外 DIY、车载改装、实验室调试、模型航模、车载电器、户外设备供电、维修测试等专业人群开发</p>
+                <p>通过高精度 DC 调压电路实现宽范围连续可调电压输出；集成 XT60 大功率输出、多规格快充接口、顶部无线磁吸充电、高清彩屏实时监测、实体按键参数调控、电池快插卡扣结构六大核心功能，一站式解决户外无市电场景下多电压、多设备供电需求，是兼顾大功率工业输出与数码快充的多功能便携稳压供电产品</p>
+            </div>
+        </div>
+
+        <div class="project-meta scroll-fade">
+            <div class="meta-block">
+                <h4>客户</h4>
+                <p>户外工具厂商</p>
+            </div>
+            <div class="meta-block">
+                <h4>年份</h4>
+                <p>2025</p>
+            </div>
+            <div class="meta-block">
+                <h4>设计师</h4>
+                <p>侯昌昌</p>
+            </div>
+            <div class="meta-block">
+                <h4>贡献</h4>
+                <p>外观造型<br>人机布局<br>CMF配色<br>结构配合</p>
+            </div>
+        </div>
+
+        <!-- 图文交替布局 -->
+        <div class="detail-images">
+            <div class="img-block">
+                <img src="tyq1-1.jpg" alt="产品多角度渲染" class="scroll-fade">
+                <p class="img-desc scroll-fade">整机采用硬朗的工业几何造型，高辨识度黄色工业配色，机身一体化设计兼顾抗摔耐磨与户外使用需求。</p>
+            </div>
+            <div class="img-block">
+                <img src="tyq.23.png" alt="正面操作面板" class="scroll-fade">
+                <p class="img-desc scroll-fade">快充，手机、耳机、笔记本、相机等设备充电；两路快充独立稳压，调压工作时不影响数码设备稳定充电。</p>
+            </div>
+            <div class="img-block">
+                <img src="tyq24.png" alt="正面操作面板" class="scroll-fade">
+                <p class="img-desc scroll-fade">标准 XT60 航模级大电流接口，支持宽压连续可调输出，适配车载设备、LED 大功率工作灯、水泵、模型电机、低压维修设备等高功率负载，线材配套齐全，拆装拓展便捷；</p>
+            </div>
+            <div class="img-block">
+                <img src="tyq123.png" alt="正面操作面板" class="scroll-fade">
+                <p class="img-desc scroll-fade">机身顶面内嵌磁吸无线充电模组，带定位磁吸圈，手机直接吸附即可无线补电，调试设备时无需额外线材，操作桌面更整洁。</p>
+            </div>
+            <div class="img-block">
+                <img src="tyq22.png" alt="正面操作面板" class="scroll-fade">
+                <p class="img-desc scroll-fade"></p>
+            </div>
+            <div class="img-block">
+                <img src="tyq4.jpg" alt="侧面散热风道" class="scroll-fade">
+                <p class="img-desc scroll-fade">正面分区式操作面板搭配高清数字显示屏，可实时查看电压、电流以及剩余电量，操作直观易懂。</p>
+            </div>
+            <div class="img-block">
+                <img src="tyq5.jpg" alt="电池卡扣结构" class="scroll-fade">
+                <p class="img-desc scroll-fade"></p>
+            </div>
+            <div class="img-block">
+                <img src="tyq6.jpg" alt="多接口输出区域" class="scroll-fade">
+                <p class="img-desc scroll-fade">配套 XT60 转接线、车载点烟器转换头、标准化接线端子，适配露营、车载改装、工作室测试场景。</p>
+            </div>
+        </div>
+
+        <!-- 360°预览区域 -->
+        <div class="ks360-wrap scroll-fade">
+            <div class="ks360-box">
+                <iframe src="xr-tyq.2/xr-tyq.2.html" allowfullscreen></iframe>
+            </div>
+            <p class="ks-tip scroll-fade">左右拖拽画面360°全方位查看调压器整机</p>
+        </div>
+
+        <!-- 底部项目跳转 -->
+        <div class="project-nav-bottom">
+            <a href="project1.html" class="prev-link">
+                <span>></span>
+                FlexPanel多角度折叠式锂电工作灯
+            </a>
+            <a href="project3.html" class="next-link">
+                Air shock自行车充气泵
+                <span>></span>
+            </a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        const navWrap = document.querySelector('.project-nav-bottom');
+        window.addEventListener('scroll', () => {
+            const distanceBottom = document.documentElement.scrollHeight - document.documentElement.scrollTop - document.documentElement.clientHeight;
+            if (distanceBottom < 200) {
+                navWrap.classList.add('show');
+            } else {
+                navWrap.classList.remove('show');
+            }
+        })
+    </script>
+</body>
+</html>
