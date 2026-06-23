@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品设计 02 | 详情</title>
+    <!-- 强制不缓存，和首页配套 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" href="style.css">
+    <style>
+/* 通栏全屏首图样式 */
+.banner-full {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    margin-top: 2rem;
+    margin-bottom: 6rem;
+}
+.banner-full img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+}
+@media (max-width:768px){
+    .banner-full {
+        margin-bottom: 4rem;
+    }
+}
+body {
+  background-color: #f8f8f8; /* 浅灰色，柔和不刺眼 */
+}
+/* 图片图文容器 统一最大宽度920px（和正常页面完全一致） */
+.img-item {
+    max-width: 920px;
+    margin: 0 auto 3rem;
+}
+.img-item img {
+    width: 100%;
+    display: block;
+    object-fit: contain;
+}
+.img-desc {
+    max-width: 920px;
+    margin: 18px auto;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.7;
+    text-align: center;
+    padding: 0 1rem;
+}
+/* 360预览容器 宽度、间距和图片完全统一920px（复刻正常页面） */
+.ks360-wrap {
+    max-width: 920px;
+    margin: 0 auto 3rem;
+    padding: 0 1rem;
+}
+.ks360-box {
+    width: 100%;
+    height: 0;
+    padding-bottom: 60%;
+    position: relative;
+    background: #fff;
+    overflow: hidden;
+}
+.ks360-box iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border: none;
+    transform: translate(-50%, -50%) scale(1.02);
+}
+.ks-tip {
+    max-width: 920px;
+    text-align: center;
+    margin-top: 14px;
+    font-size: 14px;
+    color: #666;
+    padding: 0 1rem;
+}
+        /* 详情页项目简介专用排版，匹配截图左右分栏风格 */
+        .project-intro {
+            max-width: 1400px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 4rem;
+        }
+        .intro-title h2 {
+            font-size: 48px;
+            font-weight: 600;
+            margin: 0;
+        }
+        .intro-text h3 {
+            font-size: 20px;
+            font-weight: 500;
+            margin: 0 0 2rem 0;
+        }
+        .intro-text p {
+            line-height: 1.7;
+            font-size: 15px;
+            color: #333;
+            margin: 0.6rem 0;
+        }
+        /* 底部信息四栏布局：客户/年份/设计师/贡献 文字居中 */
+        .project-meta {
+            max-width: 960px;
+            margin: 8rem auto 4rem;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            justify-items: center;
+            text-align: center;
+        }
+        .meta-block h4 {
+            font-size: 14px;
+            font-weight: 400;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        .meta-block p {
+            line-height: 1.6;
+            margin: 0;
+        }
+        /* 底部前后项目导航容器，同步参考页max-width:1400px */
+        .project-nav-bottom {
+            max-width: 1400px;
+            margin: 10rem auto 6rem !important;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+        .project-nav-bottom.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .project-nav-bottom a {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #000;
+            font-size: 28px;
+            font-weight: 500;
+            opacity: 0.85;
+            transition: opacity 0.25s ease;
+        }
+        .project-nav-bottom a:hover {
+            opacity: 1;
+        }
+        .prev-link span {
+            transform: rotate(180deg);
+            display: inline-block;
+        }
+        /* 移动端全局修复：完全复刻正常页面移动端规则 */
+        @media (max-width:768px){
+            /* 解决手机内容被两行导航遮挡 */
+            body {
+                padding-top: 140px !important;
+            }
+            /* 导航改为上下居中排布，消除文字挤压 */
+            .header {
+                flex-direction: column;
+                gap: 14px;
+                padding: 16px 20px !important;
+            }
+            .nav {
+                display: flex;
+                justify-content: center;
+                gap: 36px;
+            }
+            .nav a {
+                margin-left: 0 !important;
+            }
+            /* 通栏图片手机端底部间距缩小 */
+            .banner-full {
+                margin-bottom: 4rem;
+            }
+            /* 移动端图文间距同步缩小 */
+            .img-item {
+                margin: 0 auto 2rem;
+            }
+            .img-desc {
+                font-size: 13px;
+                margin: 16px auto;
+            }
+            /* 移动端360容器同步适配 */
+            .ks360-wrap {
+                margin: 0 auto 2rem;
+            }
+            .ks-tip {
+                font-size: 13px;
+            }
+            /* 详情页面左右留白，不贴屏幕边框 */
+            .detail-container {
+                padding: 20px 1rem !important;
+            }
+            .project-intro{
+                grid-template-columns: 1fr;
+                gap:1.5rem;
+                padding: 0 1rem;
+            }
+            .project-meta{
+                grid-template-columns: repeat(2,1fr);
+                padding: 0 1rem;
+                justify-items: center;
+                text-align: center;
+            }
+            .intro-title h2{
+                font-size:36px;
+            }
+            .project-nav-bottom a {
+                font-size: 20px;
+            }
+            .project-nav-bottom {
+                flex-direction: column;
+                gap: 3rem !important;
+                margin: 5rem auto 4rem !important;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo"><a href="index.html" style="color: inherit; text-decoration: none;">侯昌昌</a></div>
+        <nav class="nav">
+            <a href="about.html">About</a>
+            <a href="index.html#news">News</a>
+            <a href="index.html#works">Works</a>
+        </nav>
+    </header>
+
+    <!-- 通栏全屏首图 -->
+    <div class="banner-full scroll-fade">
+        <img src="work5_画板 1.jpg" alt="调压电源产品图">
+    </div>
+
+    <div class="detail-container">
+        <div class="detail-header scroll-fade">
+            <h1 class="detail-title">产品设计 02</h1>
+            <p class="detail-subtitle">2025 / 外观设计</p>
+        </div>
+
+        <div class="project-intro scroll-fade">
+            <div class="intro-title">
+                <h2>PCM140</h2>
+            </div>
+            <div class="intro-text">
+                <h3>PocketCharge Max</h3>
+                <p>专为各大品牌 20V 锂电工具电池设计，底部模块化可更换电池卡槽，通配多品牌工具电池包</p>
+                <p>集成140W双向Type-C充放电、700Lumen泛光工作灯、高清数字显示屏四大核心功能，实现工具电池秒变户外移动电源</p>
+            </div>
+        </div>
+
+        <div class="project-meta scroll-fade">
+            <div class="meta-block">
+                <h4>客户</h4>
+                <p>户外工具厂商</p>
+            </div>
+            <div class="meta-block">
+                <h4>年份</h4>
+                <p>2025</p>
+            </div>
+            <div class="meta-block">
+                <h4>设计师</h4>
+                <p>侯昌昌</p>
+            </div>
+            <div class="meta-block">
+                <h4>贡献</h4>
+                <p>外观造型<br>人机布局<br>CMF配色<br>结构配合</p>
+            </div>
+        </div>
+
+        <!-- 图片+底部说明文字 规范结构 -->
+        <div class="detail-images">
+            <div class="img-item scroll-fade">
+                <img src="dgn1.png" alt="产品多角度渲染">
+                <p class="img-desc">整机小巧便携，圆润边角弱化工业硬感，适配各类工具电池使用场景。</p>
+            </div>
+            <div class="img-item scroll-fade">
+                <img src="dgn253_画板 1.jpg" alt="细节面板图">
+                <p class="img-desc">正面集成数显屏幕与实体调节按键，实时查看充放电功率、剩余电量，操作直观简洁。</p>
+            </div>
+            <div class="img-item scroll-fade">
+                <img src="dgn88_画板 1.jpg" alt="细节面板图">
+                <p class="img-desc">140W大功率双向Type-C接口，支持笔记本、平板快充，也可反向给工具电池回充。同时具备泛光照明灯，700流明亮度，工地、露营夜间应急照明无需额外手电。</p>
+            </div>
+            <div class="img-item scroll-fade">
+                <img src="dgn99_画板 1.jpg" alt="细节面板图">
+                <p class="img-desc">机身底部可替换电池卡扣模组，兼容得伟、米沃奇、牧田等多品牌20V锂电工具电池。</p>
+            </div>
+            <div class="img-item scroll-fade">
+                <img src="dgn5.png" alt="细节面板图">
+                <p class="img-desc"></p>
+            </div>
+            <div class="img-item scroll-fade">
+                <img src="dgn2222_画板 1.jpg" alt="细节面板图">
+                <p class="img-desc">小批量试产</p>
+            </div>
+            <div class="img-item scroll-fade">
+                <img src="dgnai_画板 1.jpg" alt="细节面板图">
+                <p class="img-desc">整机一体化注塑外壳，耐磨抗摔，体积小巧可随手放入工具包，外出携带无负担。</p>
+            </div>
+            <div class="img-item scroll-fade">
+                <img src="dgn789_画板 1.jpg" alt="细节面板图">
+                <p class="img-desc">维修、露营、车载应急供电一机多用，完美适配户外工具爱好者需求。</p>
+            </div>
+        </div>
+
+        <!-- 360°旋转模块 移到detail-images外面，和参考页面结构完全一致 -->
+        <div class="ks360-wrap scroll-fade">
+            <div class="ks360-box">
+                <iframe src="dgn.5/dgn.5.html" allowfullscreen></iframe>
+            </div>
+            <p class="ks-tip">左右拖拽画面，360°全方位查看PocketCharge Max整机</p>
+        </div>
+
+        <!-- 页面底部 左右前后项目跳转 -->
+        <div class="project-nav-bottom">
+            <a href="project4.html" class="prev-link">
+                <span>></span>
+                Fourpack Pro 四电池逆变器
+            </a>
+            <a href="project6.html" class="next-link">
+                140W氮化镓充电器
+                <span>></span>
+            </a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        const navWrap = document.querySelector('.project-nav-bottom');
+        window.addEventListener('scroll', () => {
+            const distanceBottom = document.documentElement.scrollHeight - document.documentElement.scrollTop - document.documentElement.clientHeight;
+            if (distanceBottom < 200) {
+                navWrap.classList.add('show');
+            } else {
+                navWrap.classList.remove('show');
+            }
+        })
+    </script>
+</body>
+</html>
