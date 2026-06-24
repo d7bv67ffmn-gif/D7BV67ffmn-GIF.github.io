@@ -13,6 +13,30 @@
 body {
   background-color: #f8f8f8; /* 浅灰色，柔和不刺眼 */
 }
+/* 滚动淡入全局动画 */
+.scroll-fade {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.scroll-fade.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* 详情头部标题区块 */
+.detail-header {
+    max-width: 920px;
+    margin: 0 auto 5rem;
+    padding: 0 1rem;
+}
+.detail-title {
+    font-size: 32px;
+    margin: 0 0 0.8rem;
+}
+.detail-subtitle {
+    color: #666;
+    margin: 0;
+}
         /* ========== 新增通栏首图样式 ========== */
         .banner-full {
             width: 100vw;
@@ -65,11 +89,12 @@ body {
         }
         .ks360-box iframe {
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 50%;
+            left: 50%;
             width: 100%;
             height: 100%;
             border: none;
+            transform: translate(-50%, -50%) scale(1.08);
         }
         .ks-tip {
             text-align: center;
@@ -220,7 +245,7 @@ body {
 
     <!-- ========== 通栏首图 移出窄容器，全屏展示 ========== -->
     <div class="banner-full scroll-fade">
-        <img src="1-1.jpg" alt="E20 机器人吸尘器全景图">
+        <img src="1-1.jpg" alt="FlexPanel多角度折叠式锂电工作灯全景图">
     </div>
 
     <div class="detail-container">
@@ -276,11 +301,11 @@ body {
                 <p class="img-desc scroll-fade">所有灯板可向内对折收拢，五扇灯板完全贴合机身，大幅压缩整机体积，收纳后呈紧凑方块造型，可轻松放入工具包、后备箱；</p>
             </div>
             <div class="img-item">
-                <img src="4.png" alt="底部扫地模组" class="scroll-fade">
+                <img src="4.png" alt="多角度折叠形态展示" class="scroll-fade">
                 <p class="img-desc scroll-fade"></p>
             </div>
             <div class="img-item">
-                <img src="5.png" alt="尘桶与过滤组件" class="scroll-fade">
+                <img src="5.png" alt="灯板多角度翻转演示" class="scroll-fade">
                 <p class="img-desc scroll-fade">单块灯板可上下、左右多角度翻转，能实现单侧局部补光、360° 环绕全域照明、单侧定向聚光等多种照射形态；</p>
             </div>
             <div class="img-item">
@@ -289,7 +314,7 @@ body {
             </div>
             <!-- 作品集视频播放器，自动适配宽度、静音、循环播放、加载占位 -->
             <div class="img-item">
-                <video class="scroll-fade" autoplay muted loop playsinline preload="auto">
+                <video class="scroll-fade" autoplay muted loop playsinline preload="auto" webkit-playsinline>
                     <source src="sp1.mp4" type="video/mp4">
                     你的浏览器不支持视频播放
                 </video>
@@ -308,45 +333,45 @@ body {
                 <p class="img-desc scroll-fade">同时一面展开四灯板，扩大照明面积</p>
             </div>
             <div class="img-item">
-                <img src="8.jpg" alt="边角清扫效果" class="scroll-fade">
+                <img src="8.jpg" alt="底部防滑底座与螺孔" class="scroll-fade">
                 <p class="img-desc scroll-fade">加宽防滑橡胶底座，底部内置防滑硅胶垫，车库、工作台地面直立摆放不打滑；底座预留标准 1/4 相机螺孔，可外接三脚架、支架拓展高位照明</p>
             </div>
             <div class="img-item">
-                <img src="9.png" alt="尘桶拆卸结构" class="scroll-fade">
+                <img src="9.png" alt="调光与多光模式介绍" class="scroll-fade">
                 <p class="img-desc scroll-fade">无级调光：10000 流明峰值亮度可无极调节，低亮度满足夜间露营柔光、高亮度适配工地大面积铺光；
 多模式光效：支持冷白光 / 中性光切换，增设 SOS 爆闪应急模式，适用于道路抢修、户外遇险求救；
 直观操作反馈：荧光绿按键边框暗光环境清晰可见，按键行程适中，带手套也可精准操作。</p>
             </div>
             <div class="img-item">
-                <img src="9-1.jpg" alt="过滤芯拆解" class="scroll-fade">
+                <img src="9-1.jpg" alt="背部电池快装与手提握把" class="scroll-fade">
                 <p class="img-desc scroll-fade">机身顶部一体化注塑手提握把，人体工学弧形设计，手握持不硌手；机身背部预留电池包快装卡槽，可外接配套大容量锂电包，摆脱有线电源束缚，适配无市电户外场景。</p>
             </div>
             <div class="img-item">
-                <img src="31.jpg" alt="地毯深度清洁场景" class="scroll-fade">
-                <p class="img-desc scroll-fade">侧边拥有1A1C输出，可用于紧急情况下使用</p>
+                <img src="31.jpg" alt="侧边1A1C快充输出" class="scroll-fade">
+                <p class="img-desc scroll-fade">侧边拥有1A1C输出，可用于户外设备紧急供电</p>
             </div>
             <div class="img-item">
-                <img src="11-1.png" alt="多刷头搭配展示" class="scroll-fade">
+                <img src="11-1.png" alt="配套磁吸小补光灯" class="scroll-fade">
                 <p class="img-desc scroll-fade"></p>
             </div>
             <div class="img-item">
-                <img src="12.jpg" alt="卧室摆放效果图" class="scroll-fade">
-                <p class="img-desc scroll-fade">口袋级磁吸折叠便携LED工作补光灯,产品采用一体化磁吸+内置大容量锂电池，UBS-C与Pogo pin两种供电方式</p>
+                <img src="12.jpg" alt="磁吸补光灯家居摆放" class="scroll-fade">
+                <p class="img-desc scroll-fade">口袋级磁吸折叠便携LED工作补光灯,产品采用一体化磁吸+内置大容量锂电池，USB-C与Pogo pin两种供电方式</p>
             </div>
             <div class="img-item">
-                <img src="13.jpg" alt="手持长杆模式" class="scroll-fade">
+                <img src="13.jpg" alt="补光灯侧面按键细节" class="scroll-fade">
                 <p class="img-desc scroll-fade">侧面功能按键选用荧光亮绿色作为视觉区分；正面为一体化柔光乳白色灯罩</p>
             </div>
             <div class="img-item">
-                <img src="14.png" alt="滚刷防缠绕结构" class="scroll-fade">
+                <img src="14.png" alt="背部磁吸与1/4螺纹孔" class="scroll-fade">
                 <p class="img-desc scroll-fade">机身背部内置整块强力钕铁硼磁吸片，全背部吸附，可稳定吸附在金属表面：机身尾部预留标准 1/4 螺纹孔，可搭配配套挂扣支架拓展，无金属吸附面时可悬挂、外接三脚架使用，磁吸 + 悬挂双固定模式全覆盖场景。</p>
             </div>
             <div class="img-item">
-                <img src="14-1.jpg" alt="尘桶容量展示" class="scroll-fade">
+                <img src="14-1.jpg" alt="配套硬质EVA收纳包" class="scroll-fade">
                 <p class="img-desc scroll-fade">标配定制 EVA 硬质收纳包，包身带便携登山挂扣，包内分层网袋隔断，可完整收纳灯具、Type-C 充电线、金属悬挂支架、说明书，所有配件一体收纳，防压防刮，外出露营、随车携带</p>
             </div>
             <div class="img-item">
-                <img src="16.jpg" alt="宠物毛发清洁场景" class="scroll-fade">
+                <img src="16.jpg" alt="灯板柔光结构与防水" class="scroll-fade">
                 <p class="img-desc scroll-fade">灯板搭载高密度贴片 LED 灯珠，配合双层柔光扩散结构，发光面积大、光线均匀无暗区，超声波焊接，整体防水防尘等级可达到IP67</p>
             </div>
             <div class="img-item">
@@ -354,19 +379,19 @@ body {
                 <p class="img-desc scroll-fade">3D模型、结构验证</p>
             </div>
             <div class="img-item">
-                <img src="17.jpg" alt="配件收纳仓" class="scroll-fade">
+                <img src="17.jpg" alt="功能样机实物" class="scroll-fade">
                 <p class="img-desc scroll-fade">样机验证、功能验证</p>
             </div>
             <div class="img-item">
-                <img src="18.jpg" alt="玄关放置场景" class="scroll-fade">
+                <img src="18.jpg" alt="成品整机展示" class="scroll-fade">
                 <p class="img-desc scroll-fade">成品展示</p>
             </div>
             <div class="img-item">
-                <img src="23.jpg" alt="风道内部结构剖视" class="scroll-fade">
+                <img src="23.jpg" alt="内部散热结构剖视" class="scroll-fade">
                 <p class="img-desc scroll-fade"></p>
             </div>
             <div class="img-item">
-                <img src="19.png" alt="手持缝隙刷头实操" class="scroll-fade">
+                <img src="19.png" alt="拆分单灯板实操" class="scroll-fade">
                 <p class="img-desc scroll-fade"></p>
             </div>
             <div class="img-item">
@@ -396,6 +421,19 @@ body {
     <!-- 滚动动效JS -->
     <script src="script.js"></script>
     <script>
+        // 滚动淡入初始化
+        const fadeItems = document.querySelectorAll('.scroll-fade');
+        function checkFade() {
+            fadeItems.forEach(item => {
+                const rect = item.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 80) {
+                    item.classList.add('active');
+                }
+            })
+        }
+        window.addEventListener('scroll', checkFade);
+        window.addEventListener('load', checkFade);
+
         // 页面滚动到底部时显示下一页按钮
         const nextBtnWrap = document.querySelector('.next-project-bottom');
         window.addEventListener('scroll', () => {
