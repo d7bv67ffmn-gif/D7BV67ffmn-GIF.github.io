@@ -10,6 +10,30 @@
     <meta http-equiv="Expires" content="0">
     <link rel="stylesheet" href="style.css">
     <style>
+/* 滚动淡入全局动画 */
+.scroll-fade {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.scroll-fade.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* 详情头部标题区块 */
+.detail-header {
+    max-width: 920px;
+    margin: 0 auto 5rem;
+    padding: 0 1rem;
+}
+.detail-title {
+    font-size: 32px;
+    margin: 0 0 0.8rem;
+}
+.detail-subtitle {
+    color: #666;
+    margin: 0;
+}
 /* 通栏全屏首图 */
 .banner-full {
     width: 100vw;
@@ -235,7 +259,7 @@ body {
 
     <!-- 通栏全屏首图 -->
     <div class="banner-full scroll-fade">
-        <img src="四电池11_画板 1.jpg" alt="E20 机器人吸尘器全景图">
+        <img src="四电池11_画板 1.jpg" alt="FourPack Pro 四电池逆变器全景图">
     </div>
 
     <div class="detail-container">
@@ -280,39 +304,39 @@ body {
         <div class="detail-images">
             <div class="img-item scroll-fade">
                  <img src="四电池1.jpg" alt="作品大图">
-                 <p class="img-desc">整机采用工业黑 + 警示工具黄经典工具撞色设计,功能面板以黄色线条勾勒分区</p>
+                 <p class="img-desc scroll-fade">整机采用工业黑 + 警示工具黄经典工具撞色设计,功能面板以黄色线条勾勒分区</p>
             </div>
             <div class="img-item scroll-fade">
                  <img src="四电池2.jpg" alt="作品大图">
-            <p class="img-desc">机身侧面、背部设计纵向格栅散热风道，外露式散热结构直观传递大功率散热、持续重载稳定输出的专业属性。</p>
+            <p class="img-desc scroll-fade">机身侧面、背部设计纵向格栅散热风道，外露式散热结构直观传递大功率散热、持续重载稳定输出的专业属性。</p>
             </div>
             <div class="img-item scroll-fade">
                  <img src="四电池9.jpg" alt="作品大图">
-            <p class="img-desc"></p>
+            <p class="img-desc scroll-fade"></p>
             </div>
             <div class="img-item scroll-fade">
                 <img src="四电池3.jpg" alt="作品大图">
-            <p class="img-desc">正面交互操控区（数显屏 + 多接口 + 功能按键）、背部散热与应急灯区、双侧四组电池快插仓，功能分区清晰，操作、供电、照明互不干扰。</p>
+            <p class="img-desc scroll-fade">正面交互操控区（数显屏 + 多接口 + 功能按键）、背部散热与应急灯区、双侧四组电池快插仓，功能分区清晰，操作、供电、照明互不干扰。</p>
             </div>
             <div class="img-item scroll-fade">
                 <img src="四电池4.jpg" alt="作品大图">
-            <p class="img-desc">整机采用可展开四电池滑轨仓结构，底部左右双侧各双位电池插槽，</p>
+            <p class="img-desc scroll-fade">整机采用可展开四电池滑轨仓结构，底部左右双侧各双位电池插槽，</p>
             </div>
             <div class="img-item scroll-fade">
                 <img src="四电池5.jpg" alt="作品大图">
-            <p class="img-desc">底部软硅胶防滑条</p>
+            <p class="img-desc scroll-fade">底部软硅胶防滑条</p>
             </div>
             <div class="img-item scroll-fade">
                 <img src="四电池6.jpg" alt="作品大图">
-            <p class="img-desc">3D模型验证外观、结构探讨</p>
+            <p class="img-desc scroll-fade">3D模型验证外观、结构探讨</p>
             </div>
             <div class="img-item scroll-fade">
                 <img src="四电池7.jpg" alt="作品大图">
-            <p class="img-desc">小批量试产</p>
+            <p class="img-desc scroll-fade">小批量试产</p>
             </div>
             <div class="img-item scroll-fade">
                 <img src="四电池8.jpg" alt="作品大图">
-            <p class="img-desc"></p>
+            <p class="img-desc scroll-fade"></p>
             </div>
         </div>
 
@@ -321,7 +345,7 @@ body {
             <div class="ks360-box">
                 <iframe src="sdc.4.html" allowfullscreen></iframe>
             </div>
-            <p class="ks-tip">左右拖拽画面，360°全方位查看四电池逆变器整机</p>
+            <p class="ks-tip scroll-fade">左右拖拽画面，360°全方位查看四电池逆变器整机</p>
         </div>
 
         <!-- 页面底部前后项目跳转 -->
@@ -340,6 +364,20 @@ body {
     <!-- 滚动动效JS -->
     <script src="script.js"></script>
     <script>
+        // 滚动淡入初始化执行
+        const fadeItems = document.querySelectorAll('.scroll-fade');
+        function checkFade() {
+            fadeItems.forEach(item => {
+                const rect = item.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 80) {
+                    item.classList.add('active');
+                }
+            })
+        }
+        window.addEventListener('scroll', checkFade);
+        window.addEventListener('load', checkFade);
+
+        // 底部导航淡入逻辑
         const navWrap = document.querySelector('.project-nav-bottom');
         window.addEventListener('scroll', () => {
             const distanceBottom = document.documentElement.scrollHeight - document.documentElement.scrollTop - document.documentElement.clientHeight;
