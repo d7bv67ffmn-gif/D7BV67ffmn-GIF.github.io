@@ -13,6 +13,30 @@
 body {
   background-color: #f8f8f8;
 }
+/* 滚动淡入全局动画 */
+.scroll-fade {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.scroll-fade.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* 详情头部标题样式 */
+.detail-header {
+    max-width: 920px;
+    margin: 0 auto 5rem;
+    padding: 0 1rem;
+}
+.detail-title {
+    font-size: 32px;
+    margin: 0 0 0.8rem;
+}
+.detail-subtitle {
+    color: #666;
+    margin: 0;
+}
         /* 通栏首图样式 全屏左右贴边 */
         .banner-full {
             width: 100vw;
@@ -46,7 +70,7 @@ body {
             line-height: 1.7;
             text-align: center;
             padding: 0 1rem;
-            max-width: 920;
+            max-width: 920px;
         }
 
         /* 详情页项目简介专用排版，匹配截图左右分栏风格 */
@@ -96,7 +120,7 @@ body {
         /* 底部前后项目导航容器，默认隐藏 */
         .project-nav-bottom {
             max-width: 1400px;
-            margin: 0 auto 6rem;
+            margin: 15rem auto 6rem !important;
             padding: 0 2rem;
             display: flex;
             justify-content: space-between;
@@ -187,6 +211,9 @@ body {
             .detail-container {
                 padding: 20px 1rem !important;
             }
+            .detail-header {
+                margin-bottom: 3rem;
+            }
             .project-intro{
                 grid-template-columns: 1fr;
                 gap:1.5rem;
@@ -204,7 +231,8 @@ body {
             }
             .project-nav-bottom {
                 flex-direction: column;
-                gap: 2rem;
+                gap: 3rem !important;
+                margin: 5rem auto 4rem !important;
             }
             /* 移动端360 */
             .ks360-wrap {
@@ -212,16 +240,6 @@ body {
             }
             .ks-tip {
                 font-size: 13px;
-            }
-        }
-        /* 底部导航间距重写 */
-        .project-nav-bottom {
-            margin: 15rem auto 6rem !important;
-        }
-        @media (max-width:768px){
-            .project-nav-bottom {
-                margin: 5rem auto 4rem !important;
-                gap: 3rem !important;
             }
         }
     </style>
@@ -336,6 +354,20 @@ body {
 
     <script src="script.js"></script>
     <script>
+        // 滚动淡入初始化
+        const fadeItems = document.querySelectorAll('.scroll-fade');
+        function checkFade() {
+            fadeItems.forEach(item => {
+                const rect = item.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 80) {
+                    item.classList.add('active');
+                }
+            })
+        }
+        window.addEventListener('scroll', checkFade);
+        window.addEventListener('load', checkFade);
+
+        // 底部导航显示逻辑
         const navWrap = document.querySelector('.project-nav-bottom');
         window.addEventListener('scroll', () => {
             const distanceBottom = document.documentElement.scrollHeight - document.documentElement.scrollTop - document.documentElement.clientHeight;
