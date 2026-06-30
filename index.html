@@ -23,7 +23,6 @@
             justify-content: center;
             opacity: 1;
             visibility: visible;
-            /* 整体遮罩淡出缓动，LeapX柔和慢出 */
             transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.7s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .splash-screen.fade-out {
@@ -31,7 +30,7 @@
             visibility: hidden;
             pointer-events: none;
         }
-        /* Logo入场：缩放+上浮淡入，完全匹配LeapX标志动效 */
+        /* Logo入场：缩放+上浮淡入 */
         .splash-logo {
             width: 240px;
             opacity: 0;
@@ -42,17 +41,15 @@
             opacity: 1;
             transform: translateY(0) scale(1);
         }
-        /* 移动端缩小Logo */
         @media(max-width:768px){
             .splash-logo {
                 width: 160px;
             }
         }
-        /* 遮罩存在时锁定滚动 */
         body.splash-active {
             overflow: hidden;
         }
-        /* 首页内容初始低透明度，遮罩消失后淡入，和LeapX分层质感一致 */
+        /* 页面主体淡入 */
         .page-wrap {
             opacity: 0;
             transition: opacity 0.9s ease 0.3s;
@@ -61,7 +58,7 @@
             opacity: 1;
         }
 
-        /* 首页顶部全屏轮播大图样式 */
+        /* 首页顶部全屏轮播大图样式（还原原版顺滑淡入，移除visibility） */
         .hero-banner {
             width: 100%;
             height: 90vh;
@@ -69,7 +66,6 @@
             position: relative;
             margin-top: 80px;
         }
-        /* 淡入淡出核心样式 */
         .hero-banner img {
             width: 100%;
             height: 100%;
@@ -120,7 +116,7 @@
     </style>
 </head>
 <body class="splash-active">
-    <!-- 全屏启动加载页（LeapX同款黑底居中Logo） -->
+    <!-- 全屏启动加载页 -->
     <div class="splash-screen">
         <img class="splash-logo" src="SYLOGO.png" alt="HCCWORKS">
         <!-- 文字Logo替换方案，注释img启用：
@@ -128,7 +124,7 @@
         -->
     </div>
 
-    <!-- 页面所有内容包裹一层，用于遮罩消失后淡入主体 -->
+    <!-- 页面所有内容包裹层 -->
     <div class="page-wrap">
         <!-- 顶部固定导航 -->
         <header class="header">
@@ -140,62 +136,62 @@
             </nav>
         </header>
 
-        <!-- 首页全屏轮播 -->
+        <!-- 首页全屏轮播：还原原版淡入动画，仅预加载当前+下一张 -->
         <section class="hero-banner scroll-fade">
             <img class="banner-slide active" src="banner1.png" alt="首页全景渲染1">
-            <img class="banner-slide" src="banner2.png" alt="首页全景渲染2">
-            <img class="banner-slide" src="banner3.png" alt="首页全景渲染3">
-            <img class="banner-slide" src="banner4.jpg" alt="首页全景渲染4">
-            <img class="banner-slide" src="banner5.png" alt="首页全景渲染5">
-            <img class="banner-slide" src="banner6.jpg" alt="首页全景渲染6">
+            <img class="banner-slide" data-src="banner2.png" alt="首页全景渲染2">
+            <img class="banner-slide" data-src="banner3.png" alt="首页全景渲染3">
+            <img class="banner-slide" data-src="banner4.jpg" alt="首页全景渲染4">
+            <img class="banner-slide" data-src="banner5.png" alt="首页全景渲染5">
+            <img class="banner-slide" data-src="banner6.jpg" alt="首页全景渲染6">
         </section>
 
-        <!-- 作品列表 -->
+        <!-- 作品列表：全部图片添加懒加载 -->
         <section id="works" class="works">
             <a href="project1.html" class="work-item scroll-fade">
-                <img src="work1.png" alt="项目一">
+                <img src="work1.png" loading="lazy" alt="项目一">
                 <div class="work-info">
                     <h3>FlexPanel多角度折叠式锂电工作灯</h3>
                     <p>2025 / 全流程设计</p>
                 </div>
             </a>
             <a href="project2.html" class="work-item scroll-fade">
-                <img src="work2.png" alt="项目二">
+                <img src="work2.png" loading="lazy" alt="项目二">
                 <div class="work-info">
                     <h3>多功能调压器</h3>
                     <p>2025 / 全流程设计</p>
                 </div>
             </a>
             <a href="project3.html" class="work-item scroll-fade">
-                <img src="work3.png" alt="项目三">
+                <img src="work3.png" loading="lazy" alt="项目三">
                 <div class="work-info">
                     <h3>Air shock自行车充气泵</h3>
                     <p>2024 / 概念产品</p>
                 </div>
             </a>
             <a href="project4.html" class="work-item scroll-fade">
-                <img src="work4.png" alt="项目四">
+                <img src="work4.png" loading="lazy" alt="项目四">
                 <div class="work-info">
                     <h3>FourPack Pro 四电池逆变器</h3>
                     <p>2024 / 全流程设计</p>
                 </div>
             </a>
             <a href="project5.html" class="work-item scroll-fade">
-                <img src="dgn111_画板 1.jpg" alt="项目五">
+                <img src="dgn111_画板 1.jpg" loading="lazy" alt="项目五">
                 <div class="work-info">
                     <h3>PocketCharge Max</h3>
                     <p>2024 / 全流程设计</p>
                 </div>
             </a>
             <a href="project6.html" class="work-item scroll-fade">
-                <img src="cdt1.jpg" alt="项目六">
+                <img src="cdt1.jpg" loading="lazy" alt="项目六">
                 <div class="work-info">
                     <h3>140W氮化镓充电器</h3>
                     <p>2024 / 工业设计</p>
                 </div>
             </a>
             <a href="project7.html" class="work-item scroll-fade">
-                <img src="v8_画板 1.jpg" alt="项目七">
+                <img src="v8_画板 1.jpg" loading="lazy" alt="项目七">
                 <div class="work-info">
                     <h3>V-pack</h3>
                     <p>2024 /个人</p>
@@ -219,45 +215,57 @@
 
     <script src="script.js"></script>
     <script>
-        // ========== LeapX同款启动页动画逻辑（已优化时序） ==========
+        // ========== LeapX同款启动页动画逻辑 ==========
         window.addEventListener('load', function(){
             const splash = document.querySelector('.splash-screen');
             const body = document.body;
             const pageWrap = document.querySelector('.page-wrap');
 
-            // 页面资源加载完毕 → Logo上浮缩放淡入
             splash.classList.add('load-ready');
-
-            // 停留1.6秒（和LeapX时长一致，不长不拖沓）
             setTimeout(() => {
-                // 黑屏整体淡出
                 splash.classList.add('fade-out');
-                // 同步让首页内容淡入显现
                 pageWrap.classList.add('show-content');
-                // 动画结束解除滚动锁定
                 setTimeout(() => {
                     body.classList.remove('splash-active');
                 }, 700);
             }, 1600);
         })
 
-        // ========== 原有轮播逻辑（完全保留，无冲突） ==========
+        // ========== 轮播逻辑：还原原版顺滑淡入，仅预加载下一张图 ==========
         const slides = document.querySelectorAll('.banner-slide');
         let currentIndex = 0;
         let autoPlayTimer;
+        const total = slides.length;
+
+        // 把data-src转为真实src加载图片
+        function loadImg(index) {
+            const img = slides[index];
+            if (!img.src && img.dataset.src) {
+                img.src = img.dataset.src;
+            }
+        }
 
         function showSlide(index) {
             slides.forEach(s => s.classList.remove('active'));
             slides[index].classList.add('active');
+            // 提前加载下一张，避免切换空白卡顿
+            const nextIdx = (index + 1) % total;
+            loadImg(nextIdx);
         }
+
         function autoNext() {
-            currentIndex = (currentIndex + 1) % slides.length;
+            currentIndex = (currentIndex + 1) % total;
             showSlide(currentIndex);
         }
+
         function startAutoPlay() {
             autoPlayTimer = setInterval(autoNext, 3000);
         }
+
+        // 初始化：加载第0、1两张图
         window.addEventListener('load', () => {
+            loadImg(0);
+            loadImg(1);
             showSlide(currentIndex);
             startAutoPlay();
         })
